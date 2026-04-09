@@ -29,4 +29,4 @@ def predict_heart_disease(data: HeartDiseaseInput):
     # Model includes preprocessing pipeline
     prediction = model.predict(input_df)
 
-    return {"prediction": int(prediction[0])}
+    return {"prediction": int(prediction[0])} 
