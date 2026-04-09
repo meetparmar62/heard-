@@ -435,6 +435,9 @@ if submitted:
         "Oldpeak": float(Oldpeak),
         "ST_Slope": st_slope_value
     }
+    
+    # Debug output
+    st.info(f"Sending data: {input_data}")
 
     try:
         response = requests.post(API_URL, json=input_data)
