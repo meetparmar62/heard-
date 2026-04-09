@@ -81,6 +81,28 @@ page_bg = """
     50% { opacity: 0.6; transform: translate(-50%, -50%) scale(1.2); }
 }
 
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
 [data-testid="stHeader"] {
     background: rgba(0, 0, 0, 0);
 }
@@ -102,6 +124,55 @@ div.block-container {
     z-index: 1;
     max-width: 1200px;
     margin: 0 auto;
+    animation: fadeInUp 0.8s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Mobile Responsive Design */
+@media (max-width: 768px) {
+    div.block-container {
+        padding: 1.5rem !important;
+        margin: 0.5rem !important;
+        border-radius: 12px !important;
+    }
+    
+    h1 {
+        font-size: 1.8rem !important;
+    }
+    
+    .stColumns > div {
+        padding: 0 0.25rem !important;
+    }
+    
+    .stButton>button {
+        font-size: 0.95rem !important;
+        padding: 1rem 1.5rem !important;
+    }
+}
+
+@media (max-width: 480px) {
+    div.block-container {
+        padding: 1rem !important;
+        margin: 0.25rem !important;
+    }
+    
+    h1 {
+        font-size: 1.5rem !important;
+    }
+    
+    label {
+        font-size: 0.85rem !important;
+    }
 }
 
 /* Beautiful Input Fields */
@@ -115,6 +186,18 @@ div.block-container {
     padding: 8px 12px !important;
     font-size: 0.9rem !important;
     transition: all 0.3s ease !important;
+    animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 .stTextInput > div > div > input:focus,
@@ -123,6 +206,17 @@ div.block-container {
     border-color: #4fc3f7 !important;
     box-shadow: 0 0 15px rgba(79, 195, 247, 0.5) !important;
     background: rgba(255, 255, 255, 0.12) !important;
+    transform: scale(1.02);
+}
+
+/* Mobile responsive inputs */
+@media (max-width: 768px) {
+    .stTextInput > div > div > input,
+    .stSelectbox > div > div > select,
+    .stNumberInput > div > div > input {
+        padding: 10px 14px !important;
+        font-size: 0.95rem !important;
+    }
 }
 
 /* Labels */
@@ -154,13 +248,26 @@ label {
     margin: 0 auto !important;
     position: relative !important;
     overflow: hidden !important;
-    animation: gradientFlow 3s ease infinite !important;
+    animation: gradientFlow 3s ease infinite, pulseButton 2s ease-in-out infinite !important;
 }
 
 @keyframes gradientFlow {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
+}
+
+@keyframes pulseButton {
+    0%, 100% { 
+        box-shadow: 0 10px 30px rgba(245, 87, 108, 0.4),
+                    0 0 0 0 rgba(240, 147, 251, 0.5),
+                    inset 0 -3px 8px rgba(0, 0, 0, 0.2);
+    }
+    50% { 
+        box-shadow: 0 10px 30px rgba(245, 87, 108, 0.6),
+                    0 0 0 10px rgba(240, 147, 251, 0.2),
+                    inset 0 -3px 8px rgba(0, 0, 0, 0.2);
+    }
 }
 
 .stButton>button::before {
@@ -188,6 +295,24 @@ label {
                 0 0 60px rgba(240, 147, 251, 0.3) !important;
     border-color: rgba(255, 255, 255, 0.6) !important;
     letter-spacing: 1.5px !important;
+    animation: none !important;
+}
+
+/* Mobile responsive button */
+@media (max-width: 768px) {
+    .stButton>button {
+        padding: 1rem 1.5rem !important;
+        font-size: 0.95rem !important;
+        max-width: 100% !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .stButton>button {
+        padding: 0.9rem 1.2rem !important;
+        font-size: 0.85rem !important;
+        letter-spacing: 0.5px !important;
+    }
 }
 
 .stButton>button:active {
@@ -236,7 +361,7 @@ st.markdown("""
 with st.form("prediction_form"):
     # Personal Information Section
     st.markdown("""
-    <div style='background: linear-gradient(135deg, rgba(79, 195, 247, 0.15) 0%, rgba(79, 195, 247, 0.05) 100%); padding: 1rem 1.2rem; border-radius: 8px; margin-bottom: 1.5rem; border-left: 4px solid #4fc3f7; box-shadow: 0 4px 12px rgba(79, 195, 247, 0.2);'>
+    <div style='background: linear-gradient(135deg, rgba(79, 195, 247, 0.15) 0%, rgba(79, 195, 247, 0.05) 100%); padding: 1rem 1.2rem; border-radius: 8px; margin-bottom: 1.5rem; border-left: 4px solid #4fc3f7; box-shadow: 0 4px 12px rgba(79, 195, 247, 0.2); animation: slideInLeft 0.6s ease-out;'>
         <h3 style='color: #4fc3f7; margin: 0; font-size: 1.15rem; font-weight: 600; letter-spacing: 0.5px;'>PERSONAL INFORMATION</h3>
     </div>
     """, unsafe_allow_html=True)
@@ -261,7 +386,7 @@ with st.form("prediction_form"):
     
     # Cardiac Measurements Section
     st.markdown("""
-    <div style='background: linear-gradient(135deg, rgba(255, 75, 75, 0.15) 0%, rgba(255, 75, 75, 0.05) 100%); padding: 1rem 1.2rem; border-radius: 8px; margin-bottom: 1.5rem; border-left: 4px solid #ff4b4b; box-shadow: 0 4px 12px rgba(255, 75, 75, 0.2);'>
+    <div style='background: linear-gradient(135deg, rgba(255, 75, 75, 0.15) 0%, rgba(255, 75, 75, 0.05) 100%); padding: 1rem 1.2rem; border-radius: 8px; margin-bottom: 1.5rem; border-left: 4px solid #ff4b4b; box-shadow: 0 4px 12px rgba(255, 75, 75, 0.2); animation: slideInRight 0.6s ease-out;'>
         <h3 style='color: #ff4b4b; margin: 0; font-size: 1.15rem; font-weight: 600; letter-spacing: 0.5px;'>CARDIAC MEASUREMENTS</h3>
     </div>
     """, unsafe_allow_html=True)
