@@ -11,7 +11,7 @@ app = FastAPI()
 
 class HeartDiseaseInput(BaseModel):
     Age: int
-    Sex: strpahese3991@nazisat.com
+    Sex: str
     ChestPainType: str
     RestingBP: int
     Cholesterol: int
