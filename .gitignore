@@ -34,10 +34,9 @@ wheels/
 .ipynb_checkpoints
 
 # Machine Learning models (large files)
-# Uncomment if you don't want to push model files
-# *.pkl
-# *.h5
-# *.pb
+*.pkl
+*.h5
+*.pb
 
 # OS
 .DS_Store
